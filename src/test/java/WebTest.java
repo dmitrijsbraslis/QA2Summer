@@ -8,7 +8,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.List;
 
 public class WebTest {
+    //Konstanti c nazvanii vsegda zoderzhat boljshie bukvi
+    //Konstanti oboznachajutsa v Jave kak final
+    //Konstanti eto te peremennie, kotorie ne dolzhni menjatsa v processe vipolnenija testa, izmenitj ih ne dast i IDEA i Java
     private final String HOME_PAGE = "http://javaguru.lv";
+
+    //Lokatiri vsegda javljautsa objektom By i vsegda konstanti
     private final By ELEMENT = By.id("12346");
     private final By NAME_ELEMENT = By.name("name");
     private final By CLASS_ELEMENT = By.className("logo");
@@ -16,6 +21,7 @@ public class WebTest {
     @Test
     public void someTest() {
 
+        //sozdajom kopiju objekta WebDriver - prostim jazikom otkrivaem okno brauzera s kotorim budem rabotatj cherez peremennuju driver
         WebDriver driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(HOME_PAGE);
