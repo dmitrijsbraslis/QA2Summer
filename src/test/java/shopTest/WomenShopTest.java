@@ -1,5 +1,7 @@
 package shopTest;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,11 +24,18 @@ public class WomenShopTest {
     private final By LOADER = By.xpath(".//ul[@class = 'product_list grid row']/p");
     private final By LIST_VIEW_ICON = By.className("icon-th-list");
 
+    private final Logger LOGGER = LogManager.getLogger(WomenShopTest.class);
+
     @Test
     public void dressesTest() {
+        LOGGER.info("Setting Gecko global property");
         System.setProperty("webdriver.gecko.driver", "c:/geckodriver.exe");
+
+        LOGGER.info("Open Browser");
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
+
+        LOGGER.info("Opening Home Page");
         driver.get(HOME_PAGE);
 
         //код, который потом может быть использован в других тестах, выносим в отдельный метод, который потом просто вызываем подавая параметры
@@ -39,11 +48,13 @@ public class WomenShopTest {
         selectFilter("Orange", COLOR_FILTER);
         waitLoad();
 
+        LOGGER.info("Click to view icon");
         driver.findElement(LIST_VIEW_ICON).click();
     }
 
     //Этот метод может использоваться для выбора любого пункта основного менюб надо его только передать как параметр
     private void selectMenuItem(String menuItem) {
+        LOGGER.info("Selecting " + menuItem);
         List<WebElement> menuItems = driver.findElements(MAIN_MENU_ITEMS);
 
         //цикл: принимает 3 параметра: с какого элемента обходим, по какой элемент, с каким шагом
@@ -58,6 +69,7 @@ public class WomenShopTest {
     }
 
     private void selectFilter(String filterName, By locator) {
+        LOGGER.info("Selecting from filter " + filterName);
         List<WebElement> filterItems = driver.findElements(locator);
 
         //аналог цикла for - данная запись должна быть использована если обходим все элементы списка
