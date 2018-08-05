@@ -12,7 +12,7 @@ public class pageObjectTest {
     //Сам Driver тепеь находится в BaseFunc и может использоваться отовсюду
     //Как только мы создаём копию объкта BaseFunc - принудительно срабатывает конструетор, где происходит открытие браузера
     BaseFunc baseFunc = new BaseFunc();
-    private final String HOME_PAGE = "http://rus.delfi.lv";
+    private final String HOME_PAGE = "rus.delfi.lv";
 
     @Test
     public void checkArticleTitle() {
@@ -21,17 +21,13 @@ public class pageObjectTest {
         //Указываем тесту, что находимся на конкретной странице - это позволяет нам использовать инструменты этой страницы
         HomePage homePage = new HomePage(baseFunc);
         String title = homePage.getTitleById(1);
-        homePage.openArticlePage(1);
-
-        ArticlePage articlePage = new ArticlePage(baseFunc);
+        ArticlePage articlePage = homePage.openArticlePage(1);
 
         String pageTitle = articlePage.getTitle();
         //Все проверки именно характерные логике теста находятся в тесте
         Assert.assertEquals("Article title does not match", title, pageTitle);
 
-        articlePage.openCommentPage();
-
-        CommentPage commentPage = new CommentPage(baseFunc);
+        CommentPage commentPage = articlePage.openCommentPage();
 
         String commentPageTitle = commentPage.getTitle();
         Assert.assertTrue("Article title does not match", commentPageTitle.contains(title));

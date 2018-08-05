@@ -16,7 +16,8 @@ public class ArticlePage {
         return baseFunc.getElement(ARTICLE_PAGE_TITLE).getText();
     }
 
-    public void openCommentPage() {
+    public CommentPage openCommentPage() {
         baseFunc.getElement(COMMENT_LINK).click();
+        return new CommentPage(baseFunc);
     }
 }
