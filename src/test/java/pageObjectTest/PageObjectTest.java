@@ -7,7 +7,7 @@ import pageObjectTest.pages.BaseFunc;
 import pageObjectTest.pages.CommentPage;
 import pageObjectTest.pages.HomePage;
 
-public class pageObjectTest {
+public class PageObjectTest {
     //В самом тесте больше никаких локаторов, только те переменные, что нужны самой логике теста
     //Сам Driver тепеь находится в BaseFunc и может использоваться отовсюду
     //Как только мы создаём копию объкта BaseFunc - принудительно срабатывает конструетор, где происходит открытие браузера
